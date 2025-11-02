@@ -30,9 +30,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true);
     // Sync with script tag if needed
-    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    if (currentTheme !== theme) {
-      setTheme(currentTheme);
+    if (typeof document !== 'undefined') {
+      const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      if (currentTheme !== theme) {
+        setTheme(currentTheme);
+      }
     }
   }, [theme]);
 
