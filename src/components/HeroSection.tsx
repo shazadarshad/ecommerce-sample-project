@@ -95,8 +95,8 @@ export default function HeroSection() {
               transition={{ delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
             >
-              <Link
-                href="#products"
+                <Link
+                  href="/products"
                 className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-full font-semibold text-base sm:text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 w-full sm:w-auto text-center"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">

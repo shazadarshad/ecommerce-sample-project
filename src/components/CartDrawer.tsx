@@ -121,8 +121,8 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   <p className="text-gray-500 mb-6">
                     Start adding items to your cart
                   </p>
-                  <Link
-                    href="#products"
+                <Link
+                  href="/products"
                     onClick={onClose}
                     className="px-6 py-3 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200"
                   >

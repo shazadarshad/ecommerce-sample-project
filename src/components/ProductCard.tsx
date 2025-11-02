@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import Image from 'next/image';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { ShoppingBag } from 'lucide-react';
@@ -16,14 +17,14 @@ export default function ProductCard({
   onProductClick,
 }: ProductCardProps) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.05, y: -10 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="group relative bg-white dark:bg-dark-card rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-200/50 dark:border-dark-border transition-all duration-300 cursor-pointer"
-      onClick={() => onProductClick(product)}
-    >
-      {/* Image Container */}
-      <div className="relative h-64 w-full bg-gradient-to-br from-light-blue/20 to-purple-accent/20 overflow-hidden">
+    <Link href={`/products/${product.id}`}>
+      <motion.div
+        whileHover={{ scale: 1.05, y: -10 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="group relative bg-white dark:bg-dark-card rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-200/50 dark:border-dark-border transition-all duration-300 cursor-pointer"
+      >
+        {/* Image Container */}
+        <div className="relative h-64 w-full bg-gradient-to-br from-light-blue/20 to-purple-accent/20 overflow-hidden">
         <Image
           src={product.image}
           alt={product.name}
@@ -47,6 +48,7 @@ export default function ProductCard({
         >
           <button
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               onProductClick(product);
             }}
@@ -70,22 +72,22 @@ export default function ProductCard({
           <span className="text-2xl font-bold bg-gradient-to-r from-light-blue to-purple-accent bg-clip-text text-transparent">
             {formatCurrency(product.price)}
           </span>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+          <button
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               onProductClick(product);
             }}
             className="px-5 py-2.5 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:shadow-lg transition-all duration-200 text-sm"
           >
             View Details
-          </motion.button>
+          </button>
         </div>
       </div>
 
       {/* Shine Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
     </motion.div>
+    </Link>
   );
 }

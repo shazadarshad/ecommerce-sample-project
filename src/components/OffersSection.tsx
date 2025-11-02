@@ -104,7 +104,7 @@ export default function OffersSection() {
                 <p className="text-gray-600 mb-6">{offer.description}</p>
 
                 <Link
-                  href="#products"
+                  href="/products"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-semibold hover:shadow-lg hover:bg-primary/90 transition-all duration-300 group/link"
                 >
                   <span>Shop Now</span>
