@@ -1,13 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ProductCard from '@/components/ProductCard';
 import ProductModal from '@/components/ProductModal';
 import CartDrawer from '@/components/CartDrawer';
 import HeroSection from '@/components/HeroSection';
+import FeaturedProducts from '@/components/FeaturedProducts';
 import ProductFilters from '@/components/ProductFilters';
 import AboutSection from '@/components/AboutSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import { products } from '@/data/products';
 import type { Product } from '@/types';
@@ -54,6 +56,9 @@ export default function HomePage() {
       {/* Hero Section */}
       <HeroSection />
 
+      {/* Featured Products Section */}
+      <FeaturedProducts onProductClick={handleProductClick} />
+
       {/* Products Section */}
       <section id="products" className="py-20 relative overflow-hidden">
         {/* Background Effects */}
@@ -69,10 +74,10 @@ export default function HomePage() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-light-blue to-purple-accent bg-clip-text text-transparent">
-              Our Products
+              All Products
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover our curated collection of premium products
+              Browse our complete collection of premium products
             </p>
           </motion.div>
 
@@ -128,6 +133,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+
       {/* About Section */}
       <AboutSection />
 
@@ -144,9 +152,13 @@ export default function HomePage() {
       >
         <ShoppingCart className="w-6 h-6" />
         {itemCount > 0 && (
-          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse">
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse"
+          >
             {itemCount}
-          </span>
+          </motion.span>
         )}
       </motion.button>
 
