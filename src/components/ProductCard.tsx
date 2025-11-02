@@ -77,7 +77,7 @@ export default function ProductCard({
               e.stopPropagation();
               onProductClick(product);
             }}
-            className="px-5 py-2 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200 text-sm"
+            className="px-5 py-2.5 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 hover:shadow-lg transition-all duration-200 text-sm"
           >
             View Details
           </motion.button>

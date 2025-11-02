@@ -1,26 +1,33 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import ProductCard from '@/components/ProductCard';
 import ProductModal from '@/components/ProductModal';
 import CartDrawer from '@/components/CartDrawer';
 import HeroSection from '@/components/HeroSection';
 import FeaturedProducts from '@/components/FeaturedProducts';
+import OffersSection from '@/components/OffersSection';
 import ProductFilters from '@/components/ProductFilters';
+import SideFilterPanel from '@/components/SideFilterPanel';
 import AboutSection from '@/components/AboutSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
+import NewsletterSection from '@/components/NewsletterSection';
+import TrustBadgesSection from '@/components/TrustBadgesSection';
 import ContactSection from '@/components/ContactSection';
+import { ProductGridSkeleton } from '@/components/LoadingSkeleton';
 import { products } from '@/data/products';
 import type { Product } from '@/types';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Filter } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 
 export default function HomePage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const itemCount = useCartStore((state) => state.getItemCount());
 
   const handleProductClick = (product: Product) => {
@@ -31,6 +38,10 @@ export default function HomePage() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedProduct(null);
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
   };
 
   const containerVariants = {
@@ -56,15 +67,18 @@ export default function HomePage() {
       {/* Hero Section */}
       <HeroSection />
 
+      {/* Offers Section */}
+      <OffersSection />
+
       {/* Featured Products Section */}
       <FeaturedProducts onProductClick={handleProductClick} />
 
-      {/* Products Section */}
-      <section id="products" className="py-20 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-light-blue/5 to-transparent"></div>
+      {/* Trust Badges Section */}
+      <TrustBadgesSection />
 
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Products Section */}
+      <section id="products" className="section-spacing relative overflow-hidden bg-gray-bg/30 dark:bg-dark-bg/50 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto container-padding relative z-10">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -73,19 +87,34 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-light-blue to-purple-accent bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-dark-navy dark:text-gray-100">
               All Products
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Browse our complete collection of premium products
             </p>
           </motion.div>
 
-          {/* Filters */}
-          <ProductFilters
-            products={products}
-            onFilterChange={setFilteredProducts}
-          />
+          {/* Filter Toggle Button (Mobile/Tablet) */}
+          <div className="mb-6 flex items-center justify-center md:hidden">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsFilterOpen(true)}
+              className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-dark-card text-dark-navy dark:text-gray-100 rounded-xl border-2 border-gray-200 dark:border-dark-border hover:border-primary dark:hover:border-primary transition-all duration-200 shadow-sm"
+            >
+              <Filter className="w-5 h-5" />
+              Filters
+            </motion.button>
+          </div>
+
+          {/* Filters - Desktop */}
+          <div className="hidden md:block mb-8">
+            <ProductFilters
+              products={products}
+              onFilterChange={setFilteredProducts}
+            />
+          </div>
 
           {/* Product Grid */}
           {filteredProducts.length === 0 ? (
@@ -94,11 +123,11 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               className="text-center py-20"
             >
-              <div className="bg-white rounded-3xl p-12 border border-gray-200/50 max-w-md mx-auto shadow-lg">
-                <p className="text-2xl font-bold text-dark-navy mb-2">
+              <div className="bg-white dark:bg-dark-card rounded-3xl p-12 border border-gray-200/50 dark:border-dark-border max-w-md mx-auto shadow-lg">
+                <p className="text-2xl font-bold text-dark-navy dark:text-gray-100 mb-2">
                   No Products Found
                 </p>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   Try adjusting your filters to see more products.
                 </p>
               </div>
@@ -126,9 +155,10 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center mt-8 text-gray-600"
+            className="text-center mt-8 text-gray-600 dark:text-gray-400 text-sm"
           >
-            Showing {filteredProducts.length} of {products.length} products
+            Showing <span className="font-semibold text-dark-navy dark:text-gray-100">{filteredProducts.length}</span> of{' '}
+            <span className="font-semibold text-dark-navy dark:text-gray-100">{products.length}</span> products
           </motion.div>
         </div>
       </section>
@@ -136,11 +166,23 @@ export default function HomePage() {
       {/* Testimonials Section */}
       <TestimonialsSection />
 
+      {/* Newsletter Section */}
+      <NewsletterSection />
+
       {/* About Section */}
       <AboutSection />
 
       {/* Contact Section */}
       <ContactSection />
+
+      {/* Side Filter Panel */}
+      <SideFilterPanel
+        isOpen={isFilterOpen}
+        onClose={() => setIsFilterOpen(false)}
+        onFilterChange={setFilteredProducts}
+        selectedCategory={selectedCategory}
+        onCategoryChange={handleCategoryChange}
+      />
 
       {/* Floating Cart Button (Mobile) */}
       <motion.button
@@ -155,7 +197,7 @@ export default function HomePage() {
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse"
+            className="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse"
           >
             {itemCount}
           </motion.span>

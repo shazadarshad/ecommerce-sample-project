@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { useCartStore } from '@/lib/store';
+import toast from 'react-hot-toast';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -25,9 +26,38 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       const newQuantity = item.quantity + delta;
       if (newQuantity > 0) {
         updateQuantity(id, newQuantity);
+        toast.success(`Updated ${item.name} quantity`, {
+          icon: '✓',
+          duration: 2000,
+        });
       } else {
         removeItem(id);
+        toast.success(`${item.name} removed from cart`, {
+          icon: '🗑️',
+          duration: 2000,
+        });
       }
+    }
+  };
+
+  const handleRemoveItem = (id: number) => {
+    const item = items.find((i) => i.id === id);
+    if (item) {
+      removeItem(id);
+      toast.success(`${item.name} removed from cart`, {
+        icon: '🗑️',
+        duration: 2000,
+      });
+    }
+  };
+
+  const handleClearCart = () => {
+    if (items.length > 0) {
+      clearCart();
+      toast.success('Cart cleared', {
+        icon: '🗑️',
+        duration: 2000,
+      });
     }
   };
 
@@ -150,7 +180,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                           <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            onClick={() => removeItem(item.id)}
+                            onClick={() => handleRemoveItem(item.id)}
                             className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors duration-200 border border-red-100"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -185,7 +215,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={clearCart}
+                    onClick={handleClearCart}
                     className="flex-1 py-3 border-2 border-red-500/50 text-red-500 rounded-xl font-semibold hover:bg-red-50 transition-colors duration-200 backdrop-blur-md bg-white/60"
                   >
                     Clear Cart

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { useCartStore } from '@/lib/store';
 import type { Product } from '@/types';
+import toast from 'react-hot-toast';
 
 interface ProductModalProps {
   product: Product | null;
@@ -27,6 +28,13 @@ export default function ProductModal({
 
   const handleAddToCart = () => {
     addItem(product, quantity);
+    toast.success(
+      `${quantity} ${product.name}${quantity > 1 ? ' items' : ''} added to cart!`,
+      {
+        icon: '🛒',
+        duration: 3000,
+      }
+    );
     onClose();
     setQuantity(1);
   };

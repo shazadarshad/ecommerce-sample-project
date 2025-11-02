@@ -17,6 +17,19 @@
   * {
     @apply box-border;
   }
+
+  /* CSS Variables for toast notifications */
+  :root {
+    --toast-bg: #ffffff;
+    --toast-color: #111827;
+    --toast-border: rgba(0, 0, 0, 0.1);
+  }
+
+  .dark {
+    --toast-bg: #151925;
+    --toast-color: #f1f5f9;
+    --toast-border: rgba(255, 255, 255, 0.1);
+  }
 }
 
 @layer utilities {
@@ -40,7 +53,7 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #38BDF8 0%, #A855F7 100%);
+    background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -55,5 +68,14 @@
   .dark .glass-strong {
     background: rgba(21, 25, 37, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Professional spacing utilities */
+  .section-spacing {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
   }
 }

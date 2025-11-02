@@ -9,10 +9,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Professional color palette
+        primary: '#2563EB', // Blue - buttons, links, highlights
+        accent: '#F97316', // Orange - sale badges, hover states
+        // Dark navy (kept for dark mode backgrounds)
         "dark-navy": "#0F172A",
+        // Light blue (kept for gradients)
         "light-blue": "#38BDF8",
+        // Purple accent (kept for gradients)
         "purple-accent": "#A855F7",
-        "light-bg": "#F1F5F9",
+        // Background colors
+        "light-bg": "#F9FAFB",
+        "gray-bg": "#F3F4F6",
         // Dark mode colors
         "dark-bg": "#0A0E1A",
         "dark-card": "#151925",
@@ -20,6 +28,10 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
       },
       transitionProperty: {
         'colors': 'color, background-color, border-color',
