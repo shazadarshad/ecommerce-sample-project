@@ -1,141 +1,197 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
+import { ShoppingCart, Star, Plus, Minus, Check, Truck, Shield, ArrowRight } from 'lucide-react';
+import { products } from '@/data/products';
+import { useCartStore } from '@/lib/store';
+import { formatCurrency } from '@/utils/formatCurrency';
+import toast from 'react-hot-toast';
 
 export default function HeroSection() {
+  // Get featured product (first product)
+  const featuredProduct = products[0];
+  const [quantity, setQuantity] = useState(1);
+  const addItem = useCartStore((state) => state.addItem);
+
+  const handleAddToCart = () => {
+    addItem(featuredProduct, quantity);
+    toast.success(
+      `${quantity} ${featuredProduct.name}${quantity > 1 ? ' items' : ''} added to cart!`,
+      {
+        icon: '🛒',
+        duration: 3000,
+      }
+    );
+  };
+
+  const handleQuantityChange = (delta: number) => {
+    setQuantity(Math.max(1, quantity + delta));
+  };
+
   return (
-    <section className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-dark-navy via-dark-navy to-purple-accent/20 dark:from-dark-bg dark:via-dark-card dark:to-purple-accent/10 transition-colors duration-500">
-      {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
-      
-      {/* Animated Gradient Orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute top-20 left-20 w-72 h-72 sm:w-96 sm:h-96 bg-light-blue rounded-full blur-3xl dark:opacity-30"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3],
-            x: [0, -80, 0],
-            y: [0, -60, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute bottom-20 right-20 w-[400px] h-[400px] sm:w-[500px] sm:h-[500px] bg-purple-accent rounded-full blur-3xl dark:opacity-30"
-        />
-      </div>
+    <section className="relative min-h-[90vh] flex items-center bg-gray-bg/50 dark:bg-dark-bg overflow-hidden">
+      {/* Clean Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-dark-bg dark:via-dark-card dark:to-dark-bg"></div>
 
-      {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto"
-        >
-          {/* Glassmorphic Card with Better Contrast */}
-          <div className="bg-white/95 dark:bg-dark-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border-2 border-white/50 dark:border-dark-border/50 transition-colors duration-300">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: 'spring' }}
-              className="inline-block mb-4 sm:mb-6"
-            >
-              <div className="p-3 sm:p-4 bg-gradient-to-br from-light-blue/20 to-purple-accent/20 dark:from-light-blue/30 dark:to-purple-accent/30 rounded-xl sm:rounded-2xl inline-block transition-colors duration-300">
-                <Sparkles className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 text-purple-accent" />
-              </div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6"
-            >
-              <span className="block text-dark-navy dark:text-gray-100 mb-2 transition-colors duration-300">Welcome to</span>
-              <span className="block bg-gradient-to-r from-light-blue via-purple-accent to-light-blue bg-clip-text text-transparent">
-                Zenva Store
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-6 sm:mb-8 font-light leading-relaxed px-2 transition-colors duration-300"
-            >
-              Discover Premium Products with Unmatched Quality
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
-            >
-                <Link
-                  href="/products"
-                className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-full font-semibold text-base sm:text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 w-full sm:w-auto text-center"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Shop Now
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-accent to-light-blue opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              </Link>
-
-              <Link
-                href="#about"
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-white dark:bg-dark-card border-2 border-gray-300 dark:border-dark-border text-dark-navy dark:text-gray-100 rounded-full font-semibold text-base sm:text-lg hover:border-purple-accent dark:hover:border-light-blue hover:bg-purple-accent/5 dark:hover:bg-purple-accent/10 transition-all duration-300 hover:shadow-lg w-full sm:w-auto text-center"
-              >
-                Learn More
-              </Link>
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-10 hidden sm:block"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-white/80 dark:border-gray-400/80 rounded-full flex justify-center bg-white/10 dark:bg-dark-card/30 backdrop-blur-md"
-        >
+      <div className="max-w-7xl mx-auto container-padding relative z-10 py-12 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Side - Content */}
           <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 bg-white dark:bg-gray-400 rounded-full mt-2"
-          />
-        </motion.div>
-      </motion.div>
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6 lg:space-y-8"
+          >
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 dark:bg-primary/20 rounded-full border border-primary/20 dark:border-primary/30">
+              <span className="text-xs font-semibold text-primary dark:text-light-blue">BESTSELLER</span>
+            </div>
+
+            {/* Product Name */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-dark-navy dark:text-gray-100 leading-tight">
+              {featuredProduct.name}
+            </h1>
+
+            {/* Rating & Reviews */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star
+                    key={star}
+                    className="w-5 h-5 text-yellow-400 fill-yellow-400"
+                  />
+                ))}
+              </div>
+              <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="font-semibold text-dark-navy dark:text-gray-100">4.8</span> (1,234 reviews)
+              </span>
+            </div>
+
+            {/* Price */}
+            <div className="flex items-baseline gap-3">
+              <span className="text-4xl md:text-5xl font-bold text-dark-navy dark:text-gray-100">
+                {formatCurrency(featuredProduct.price)}
+              </span>
+              <span className="text-lg text-gray-500 dark:text-gray-400 line-through">
+                {formatCurrency(featuredProduct.price * 1.2)}
+              </span>
+              <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-sm font-semibold">
+                Save 17%
+              </span>
+            </div>
+
+            {/* Description */}
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl">
+              {featuredProduct.description}
+            </p>
+
+            {/* Key Features */}
+            <div className="space-y-2">
+              {[
+                'Active Noise Cancellation',
+                '30-Hour Battery Life',
+                'Premium Sound Quality',
+                'Comfortable Design'
+              ].map((feature, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Quantity Selector */}
+            <div className="flex items-center gap-4">
+              <label className="text-sm font-semibold text-dark-navy dark:text-gray-100">
+                Quantity:
+              </label>
+              <div className="flex items-center gap-2 border-2 border-gray-200 dark:border-dark-border rounded-lg overflow-hidden">
+                <button
+                  onClick={() => handleQuantityChange(-1)}
+                  className="px-4 py-2 bg-gray-100 dark:bg-dark-border hover:bg-gray-200 dark:hover:bg-dark-border/80 transition-colors duration-200"
+                  aria-label="Decrease quantity"
+                >
+                  <Minus className="w-4 h-4 text-dark-navy dark:text-gray-100" />
+                </button>
+                <span className="px-6 py-2 text-lg font-semibold text-dark-navy dark:text-gray-100 min-w-[3rem] text-center">
+                  {quantity}
+                </span>
+                <button
+                  onClick={() => handleQuantityChange(1)}
+                  className="px-4 py-2 bg-gray-100 dark:bg-dark-border hover:bg-gray-200 dark:hover:bg-dark-border/80 transition-colors duration-200"
+                  aria-label="Increase quantity"
+                >
+                  <Plus className="w-4 h-4 text-dark-navy dark:text-gray-100" />
+                </button>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleAddToCart}
+                className="flex-1 px-8 py-4 bg-primary text-white rounded-lg font-semibold text-lg flex items-center justify-center gap-2 hover:bg-primary/90 hover:shadow-lg transition-all duration-200"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                Add to Cart
+              </motion.button>
+              <Link
+                href={`/products/${featuredProduct.id}`}
+                className="flex-1 px-8 py-4 bg-white dark:bg-dark-card border-2 border-gray-300 dark:border-dark-border text-dark-navy dark:text-gray-100 rounded-lg font-semibold text-lg text-center hover:border-primary dark:hover:border-primary hover:bg-gray-50 dark:hover:bg-dark-border transition-all duration-200 flex items-center justify-center gap-2"
+              >
+                View Details
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-gray-200 dark:border-dark-border">
+              <div className="flex items-center gap-2">
+                <Truck className="w-5 h-5 text-primary" />
+                <span className="text-sm text-gray-700 dark:text-gray-300">Free Shipping</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-primary" />
+                <span className="text-sm text-gray-700 dark:text-gray-300">30-Day Returns</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-primary" />
+                <span className="text-sm text-gray-700 dark:text-gray-300">Secure Payment</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Side - Product Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full rounded-2xl overflow-hidden bg-white dark:bg-dark-card shadow-2xl border border-gray-200 dark:border-dark-border"
+          >
+            <Image
+              src={featuredProduct.image}
+              alt={featuredProduct.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
+            {/* Sale Badge */}
+            <div className="absolute top-6 left-6 px-4 py-2 bg-accent text-white rounded-full text-sm font-bold shadow-lg">
+              Sale 17% Off
+            </div>
+            {/* New Badge */}
+            <div className="absolute top-6 right-6 px-4 py-2 bg-primary text-white rounded-full text-sm font-bold shadow-lg">
+              New
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
