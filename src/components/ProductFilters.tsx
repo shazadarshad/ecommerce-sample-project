@@ -97,18 +97,18 @@ export default function ProductFilters({
       {/* Search Bar */}
       <div className="mb-6">
         <div className="relative max-w-2xl mx-auto">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <Search               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
           <input
             type="text"
             placeholder="Search products..."
             value={searchTerm}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-full text-white placeholder-white/60 focus:outline-none focus:border-purple-accent transition-all duration-300"
+            className="w-full pl-12 pr-4 py-4 bg-white border-2 border-gray-200 rounded-full text-dark-navy placeholder-gray-400 focus:outline-none focus:border-purple-accent transition-all duration-300 shadow-sm"
           />
           {searchTerm && (
             <button
               onClick={() => handleSearchChange('')}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-dark-navy"
             >
               <X className="w-5 h-5" />
             </button>
@@ -120,7 +120,7 @@ export default function ProductFilters({
       <div className="flex items-center justify-center gap-4 mb-4">
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-md text-white rounded-full border-2 border-white/20 hover:bg-white/20 transition-all duration-300"
+          className="flex items-center gap-2 px-6 py-3 bg-white text-dark-navy rounded-full border-2 border-gray-200 hover:border-purple-accent hover:bg-purple-accent/5 transition-all duration-300 shadow-sm"
         >
           <Filter className="w-5 h-5" />
           Filters
@@ -128,7 +128,7 @@ export default function ProductFilters({
         {(selectedCategory !== 'All' || priceRange[1] < maxPrice || searchTerm) && (
           <button
             onClick={clearFilters}
-            className="px-6 py-3 bg-red-500/20 backdrop-blur-md text-white rounded-full border-2 border-red-500/30 hover:bg-red-500/30 transition-all duration-300"
+              className="px-6 py-3 bg-white text-red-500 rounded-full border-2 border-red-500/50 hover:bg-red-50 transition-all duration-300 shadow-sm"
           >
             Clear Filters
           </button>
@@ -142,12 +142,12 @@ export default function ProductFilters({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 mb-6 border border-white/20 backdrop-blur-xl"
+            className="bg-white rounded-3xl p-6 mb-6 border border-gray-200/50 shadow-lg"
           >
             <div className="grid md:grid-cols-2 gap-6">
               {/* Category Filter */}
               <div>
-                <label className="block text-white font-semibold mb-3">
+                <label className="block text-dark-navy font-semibold mb-3">
                   Category
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -158,7 +158,7 @@ export default function ProductFilters({
                       className={`px-4 py-2 rounded-full transition-all duration-300 ${
                         selectedCategory === category
                           ? 'bg-gradient-to-r from-light-blue to-purple-accent text-white'
-                          : 'bg-white/10 text-white/80 hover:bg-white/20'
+                          : 'bg-gray-100 text-dark-navy hover:bg-gray-200 border border-gray-200'
                       }`}
                     >
                       {category}
@@ -169,7 +169,7 @@ export default function ProductFilters({
 
               {/* Price Range */}
               <div>
-                <label className="block text-white font-semibold mb-3">
+                <label className="block text-dark-navy font-semibold mb-3">
                   Price Range: ${priceRange[0]} - ${priceRange[1]}
                 </label>
                 <div className="space-y-2">
@@ -181,12 +181,9 @@ export default function ProductFilters({
                     onChange={(e) =>
                       handlePriceChange(priceRange[0], Number(e.target.value))
                     }
-                    className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-purple-accent"
-                    style={{
-                      background: `linear-gradient(to right, #A855F7 0%, #A855F7 ${(priceRange[1] / maxPrice) * 100}%, rgba(255,255,255,0.2) ${(priceRange[1] / maxPrice) * 100}%, rgba(255,255,255,0.2) 100%)`,
-                    }}
+                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-accent"
                   />
-                  <div className="flex justify-between text-white/60 text-sm">
+                  <div className="flex justify-between text-gray-600 text-sm">
                     <span>$0</span>
                     <span>${maxPrice}</span>
                   </div>

@@ -19,7 +19,7 @@ export default function ProductCard({
     <motion.div
       whileHover={{ scale: 1.05, y: -10 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="group relative bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-white/20 transition-all duration-300 cursor-pointer"
+      className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-200/50 transition-all duration-300 cursor-pointer"
       onClick={() => onProductClick(product)}
     >
       {/* Image Container */}
@@ -35,8 +35,8 @@ export default function ProductCard({
         <div className="absolute inset-0 bg-gradient-to-t from-dark-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         {/* Category Badge */}
-        <div className="absolute top-4 left-4 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
-          <span className="text-xs font-semibold text-white">{product.category}</span>
+        <div className="absolute top-4 left-4 px-3 py-1 bg-white/95 backdrop-blur-md rounded-full border border-gray-200 shadow-lg">
+          <span className="text-xs font-semibold text-dark-navy">{product.category}</span>
         </div>
 
         {/* Quick Add Button (shows on hover) */}

@@ -94,7 +94,7 @@ export default function HomePage() {
               animate={{ opacity: 1 }}
               className="text-center py-20"
             >
-              <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-12 border border-white/20 max-w-md mx-auto">
+              <div className="bg-white rounded-3xl p-12 border border-gray-200/50 max-w-md mx-auto shadow-lg">
                 <p className="text-2xl font-bold text-dark-navy mb-2">
                   No Products Found
                 </p>

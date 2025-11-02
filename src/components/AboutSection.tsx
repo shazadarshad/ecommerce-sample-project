@@ -60,7 +60,7 @@ export default function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group"
+                className="bg-white rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg transition-all duration-300 group shadow-sm"
               >
                 <div className="bg-gradient-to-br from-light-blue/20 to-purple-accent/20 rounded-xl p-4 w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Icon className="w-8 h-8 text-purple-accent" />
@@ -79,7 +79,7 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/20 max-w-4xl mx-auto"
+          className="bg-white rounded-3xl p-8 md:p-12 border border-gray-200/50 max-w-4xl mx-auto shadow-lg"
         >
           <h3 className="text-3xl font-bold mb-6 text-dark-navy">
             Our Story

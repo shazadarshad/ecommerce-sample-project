@@ -61,7 +61,7 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
+            <div className="bg-white rounded-2xl p-6 border border-gray-200/50 shadow-sm">
               <div className="flex items-start gap-4">
                 <div className="bg-gradient-to-br from-light-blue/20 to-purple-accent/20 rounded-lg p-3">
                   <Mail className="w-6 h-6 text-purple-accent" />
@@ -73,7 +73,7 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
+            <div className="bg-white rounded-2xl p-6 border border-gray-200/50 shadow-sm">
               <div className="flex items-start gap-4">
                 <div className="bg-gradient-to-br from-light-blue/20 to-purple-accent/20 rounded-lg p-3">
                   <Phone className="w-6 h-6 text-purple-accent" />
@@ -85,7 +85,7 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20">
+            <div className="bg-white rounded-2xl p-6 border border-gray-200/50 shadow-sm">
               <div className="flex items-start gap-4">
                 <div className="bg-gradient-to-br from-light-blue/20 to-purple-accent/20 rounded-lg p-3">
                   <MapPin className="w-6 h-6 text-purple-accent" />
@@ -106,7 +106,7 @@ export default function ContactSection() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20"
+            className="bg-white rounded-2xl p-8 border border-gray-200/50 shadow-md"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -119,7 +119,7 @@ export default function ContactSection() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white/20 backdrop-blur-md border-2 border-white/30 rounded-lg focus:outline-none focus:border-purple-accent transition-colors duration-300"
+                  className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-accent focus:bg-white transition-colors duration-300"
                   placeholder="Your name"
                 />
               </div>
@@ -134,7 +134,7 @@ export default function ContactSection() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white/20 backdrop-blur-md border-2 border-white/30 rounded-lg focus:outline-none focus:border-purple-accent transition-colors duration-300"
+                  className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-accent focus:bg-white transition-colors duration-300"
                   placeholder="your@email.com"
                 />
               </div>

@@ -70,7 +70,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 group relative overflow-hidden"
+              className="bg-white rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg transition-all duration-300 group relative overflow-hidden shadow-sm"
             >
               {/* Quote Icon */}
               <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-40 transition-opacity">
