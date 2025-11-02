@@ -6,14 +6,8 @@ import Link from 'next/link';
 import ProductModal from '@/components/ProductModal';
 import CartDrawer from '@/components/CartDrawer';
 import HeroSection from '@/components/HeroSection';
-import FeaturedProducts from '@/components/FeaturedProducts';
 import OffersSection from '@/components/OffersSection';
-import CategoryPreview from '@/components/CategoryPreview';
-import AboutSection from '@/components/AboutSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import NewsletterSection from '@/components/NewsletterSection';
 import TrustBadgesSection from '@/components/TrustBadgesSection';
-import ContactSection from '@/components/ContactSection';
 import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
 import type { Product } from '@/types';
@@ -26,7 +20,7 @@ export default function HomePage() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const itemCount = useCartStore((state) => state.getItemCount());
 
-  // Get only 2-3 featured products for home page
+  // Get only 3 featured products for home page
   const featuredProducts = products.slice(0, 3);
 
   const handleProductClick = (product: Product) => {
@@ -47,11 +41,11 @@ export default function HomePage() {
       {/* Trust Badges Section */}
       <TrustBadgesSection />
 
-      {/* Offers Section */}
+      {/* Special Offers Section */}
       <OffersSection />
 
-      {/* Featured Products Section - Only 2-3 products */}
-      <section className="section-spacing relative overflow-hidden">
+      {/* Featured Products Section - Only 3 products */}
+      <section className="section-spacing relative overflow-hidden bg-gray-bg/30 dark:bg-dark-bg/50">
         <div className="max-w-7xl mx-auto container-padding relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -101,43 +95,6 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Category Preview Sections */}
-      <CategoryPreview
-        category="Electronics"
-        title="Tech Collection"
-        description="Cutting-edge electronics and smart devices for the modern lifestyle"
-        icon="📱"
-        onProductClick={handleProductClick}
-      />
-
-      <CategoryPreview
-        category="Clothing"
-        title="Fashion & Style"
-        description="Trendy and comfortable clothing for every occasion"
-        icon="👕"
-        onProductClick={handleProductClick}
-      />
-
-      <CategoryPreview
-        category="Accessories"
-        title="Complete Your Look"
-        description="Essential accessories that complement your style"
-        icon="🎒"
-        onProductClick={handleProductClick}
-      />
-
-      {/* Testimonials Section */}
-      <TestimonialsSection />
-
-      {/* Newsletter Section */}
-      <NewsletterSection />
-
-      {/* About Section */}
-      <AboutSection />
-
-      {/* Contact Section */}
-      <ContactSection />
 
       {/* Floating Cart Button (Mobile) */}
       <motion.button
