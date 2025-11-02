@@ -157,8 +157,8 @@ export default function ProductFilters({
                       onClick={() => handleCategoryChange(category)}
                       className={`px-4 py-2 rounded-full transition-all duration-300 ${
                         selectedCategory === category
-                          ? 'bg-gradient-to-r from-light-blue to-purple-accent text-white'
-                          : 'bg-gray-100 text-dark-navy hover:bg-gray-200 border border-gray-200'
+                          ? 'bg-primary text-white'
+                          : 'bg-gray-100 text-dark-navy hover:bg-gray-200 border border-gray-200 dark:bg-dark-border dark:text-gray-100 dark:hover:bg-dark-border/80'
                       }`}
                     >
                       {category}

@@ -56,7 +56,7 @@ export default function CartPage() {
             </p>
             <Link
               href="/"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200"
+              className="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:shadow-lg hover:bg-primary/90 transition-all duration-200"
             >
               Continue Shopping
             </Link>
@@ -153,7 +153,7 @@ export default function CartPage() {
                 </div>
                 <Link
                   href="/checkout"
-                  className="block w-full py-3 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-lg font-semibold text-center hover:shadow-lg transition-shadow duration-200 mb-3"
+                  className="block w-full py-3 bg-primary text-white rounded-lg font-semibold text-center hover:shadow-lg hover:bg-primary/90 transition-all duration-200 mb-3"
                 >
                   Proceed to Checkout
                 </Link>

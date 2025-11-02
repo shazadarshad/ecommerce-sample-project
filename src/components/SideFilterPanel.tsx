@@ -100,24 +100,24 @@ export default function SideFilterPanel({
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed left-0 top-0 h-full w-full max-w-sm bg-white shadow-2xl z-50 overflow-y-auto border-r border-gray-200"
+            className="fixed left-0 top-0 h-full w-full max-w-sm bg-white dark:bg-dark-card shadow-2xl z-50 overflow-y-auto border-r border-gray-200 dark:border-dark-border transition-colors duration-300"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
+            <div className="sticky top-0 bg-white dark:bg-dark-card border-b border-gray-200 dark:border-dark-border p-6 z-10 transition-colors duration-300">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-gradient-to-br from-light-blue/20 to-purple-accent/20 rounded-lg">
                     <Filter className="w-5 h-5 text-purple-accent" />
                   </div>
-                  <h2 className="text-xl font-bold text-dark-navy">Filters</h2>
+                  <h2 className="text-xl font-bold text-dark-navy dark:text-gray-100 transition-colors duration-300">Filters</h2>
                 </div>
                 <motion.button
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={onClose}
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-dark-border rounded-lg transition-colors"
                 >
-                  <X className="w-6 h-6 text-dark-navy" />
+                  <X className="w-6 h-6 text-dark-navy dark:text-gray-100 transition-colors duration-300" />
                 </motion.button>
               </div>
 
@@ -146,8 +146,8 @@ export default function SideFilterPanel({
             <div className="p-6 space-y-6">
               {/* Category Filter */}
               <div>
-                <h3 className="text-lg font-bold text-dark-navy mb-4 flex items-center gap-2">
-                  <SlidersHorizontal className="w-5 h-5 text-purple-accent" />
+                <h3 className="text-lg font-bold text-dark-navy dark:text-gray-100 mb-4 flex items-center gap-2 transition-colors duration-300">
+                  <SlidersHorizontal className="w-5 h-5 text-primary" />
                   Category
                 </h3>
                 <div className="space-y-2">
@@ -157,8 +157,8 @@ export default function SideFilterPanel({
                       onClick={() => onCategoryChange(category)}
                       className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 ${
                         selectedCategory === category
-                          ? 'bg-gradient-to-r from-light-blue to-purple-accent text-white shadow-lg'
-                          : 'bg-gray-50 text-dark-navy hover:bg-gray-100 border border-transparent hover:border-gray-200'
+                          ? 'bg-primary text-white shadow-lg'
+                          : 'bg-gray-50 dark:bg-dark-border text-dark-navy dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-dark-border/80 border border-transparent hover:border-gray-200 dark:hover:border-dark-border'
                       }`}
                     >
                       <span className="font-semibold">{category}</span>
@@ -195,7 +195,7 @@ export default function SideFilterPanel({
                       className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-accent"
                     />
                   </div>
-                  <div className="flex justify-between text-sm text-gray-500">
+                  <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
                     <span>$0</span>
                     <span>${maxPrice}</span>
                   </div>
@@ -204,11 +204,11 @@ export default function SideFilterPanel({
 
               {/* Sort By */}
               <div>
-                <h3 className="text-lg font-bold text-dark-navy mb-4">Sort By</h3>
+                <h3 className="text-lg font-bold text-dark-navy dark:text-gray-100 mb-4 transition-colors duration-300">Sort By</h3>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl text-dark-navy focus:outline-none focus:border-purple-accent focus:bg-white transition-colors"
+                  className="w-full px-4 py-3 bg-gray-50 dark:bg-dark-border border-2 border-gray-200 dark:border-dark-border rounded-xl text-dark-navy dark:text-gray-100 focus:outline-none focus:border-primary dark:focus:border-primary focus:bg-white dark:focus:bg-dark-card transition-colors"
                 >
                   <option value="default">Default</option>
                   <option value="price-low">Price: Low to High</option>
@@ -222,7 +222,7 @@ export default function SideFilterPanel({
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={clearFilters}
-                className="w-full py-3 bg-gray-100 text-dark-navy rounded-xl font-semibold hover:bg-gray-200 transition-colors border border-gray-200"
+                className="w-full py-3 bg-gray-100 dark:bg-dark-border text-dark-navy dark:text-gray-100 rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-dark-border/80 transition-colors border border-gray-200 dark:border-dark-border"
               >
                 Clear All Filters
               </motion.button>

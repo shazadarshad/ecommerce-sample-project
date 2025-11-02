@@ -168,7 +168,7 @@ export default function Footer() {
                 href="https://instagram.com/shazad.ar"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-light-blue transition-colors"
+                className="hover:text-primary transition-colors"
               >
                 @shazad.ar
               </Link>
@@ -177,7 +177,7 @@ export default function Footer() {
                 href="https://instagram.com/zenvadigitals"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-purple-accent transition-colors"
+                className="hover:text-primary transition-colors"
               >
                 @zenvadigitals
               </Link>

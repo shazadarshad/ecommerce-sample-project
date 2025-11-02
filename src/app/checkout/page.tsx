@@ -65,7 +65,7 @@ export default function CheckoutPage() {
           </p>
           <Link
             href="/"
-            className="inline-block px-6 py-3 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200"
+            className="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:shadow-lg hover:bg-primary/90 transition-all duration-200"
           >
             Continue Shopping
           </Link>
@@ -83,7 +83,7 @@ export default function CheckoutPage() {
           </h2>
           <Link
             href="/"
-            className="inline-block px-6 py-3 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-lg font-semibold hover:shadow-lg transition-shadow duration-200"
+            className="inline-block px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:shadow-lg hover:bg-primary/90 transition-all duration-200"
           >
             Continue Shopping
           </Link>
@@ -209,7 +209,7 @@ export default function CheckoutPage() {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-lg font-semibold text-lg hover:shadow-lg transition-shadow duration-200"
+                className="w-full py-4 bg-primary text-white rounded-lg font-semibold text-lg hover:shadow-lg hover:bg-primary/90 transition-all duration-200"
               >
                 Place Order
               </motion.button>

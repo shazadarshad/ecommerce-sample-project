@@ -158,7 +158,7 @@ export default function ContactSection() {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-lg font-semibold text-lg flex items-center justify-center gap-2 hover:shadow-lg transition-shadow duration-200"
+                className="w-full py-4 bg-primary text-white rounded-lg font-semibold text-lg flex items-center justify-center gap-2 hover:shadow-lg hover:bg-primary/90 transition-all duration-200"
               >
                 <Send className="w-5 h-5" />
                 {submitted ? 'Message Sent!' : 'Send Message'}

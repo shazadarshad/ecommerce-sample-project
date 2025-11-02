@@ -36,8 +36,8 @@ export default function CategoryNavigation({
   };
 
   return (
-    <div className="bg-white rounded-2xl p-6 border border-gray-200/50 shadow-sm mb-6">
-      <h3 className="text-lg font-bold text-dark-navy mb-4">Categories</h3>
+    <div       className="bg-white dark:bg-dark-card rounded-2xl p-6 border border-gray-200/50 dark:border-dark-border shadow-sm mb-6 transition-colors duration-300">
+        <h3 className="text-lg font-bold text-dark-navy dark:text-gray-100 mb-4 transition-colors duration-300">Categories</h3>
       <div className="space-y-2">
         {categories.map((category, index) => (
           <motion.button
@@ -47,9 +47,9 @@ export default function CategoryNavigation({
             transition={{ delay: index * 0.05 }}
             onClick={() => onCategorySelect(category)}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
-              selectedCategory === category
-                ? 'bg-gradient-to-r from-light-blue to-purple-accent text-white shadow-lg'
-                : 'bg-gray-50 text-dark-navy hover:bg-gray-100 border border-transparent hover:border-gray-200'
+                      selectedCategory === category
+                ? 'bg-primary text-white shadow-lg'
+                : 'bg-gray-50 dark:bg-dark-border text-dark-navy dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-dark-border/80 border border-transparent hover:border-gray-200 dark:hover:border-dark-border transition-colors duration-300'
             }`}
           >
             <span className="text-2xl">{getCategoryIcon(category)}</span>
