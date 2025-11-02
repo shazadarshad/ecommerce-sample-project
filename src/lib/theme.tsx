@@ -12,22 +12,29 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
+  // Initialize theme from script tag or default to 'light'
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'light';
+    try {
+      const savedTheme = localStorage.getItem('theme') as Theme | null;
+      if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
+        return savedTheme;
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // Check localStorage or system preference
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
-    const initialTheme = (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) 
-      ? savedTheme 
-      : systemTheme;
-    setTheme(initialTheme);
-    applyTheme(initialTheme);
-  }, []);
+    // Sync with script tag if needed
+    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    if (currentTheme !== theme) {
+      setTheme(currentTheme);
+    }
+  }, [theme]);
 
   const applyTheme = (newTheme: Theme) => {
     if (typeof document !== 'undefined') {

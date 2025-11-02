@@ -40,16 +40,17 @@ export default function Navbar() {
     }
   };
 
+  // Prevent hydration mismatch by using default state during SSR
+  const navClassName = scrolled
+    ? 'bg-white/95 dark:bg-dark-card/95 backdrop-blur-xl shadow-lg border-b border-gray-200 dark:border-dark-border'
+    : 'bg-dark-navy/95 dark:bg-dark-card/95 backdrop-blur-xl';
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 dark:bg-dark-card/95 backdrop-blur-xl shadow-lg border-b border-gray-200 dark:border-dark-border'
-          : 'bg-dark-navy/95 dark:bg-dark-card/95 backdrop-blur-xl'
-      }`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${navClassName}`}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
