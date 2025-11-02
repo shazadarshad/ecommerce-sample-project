@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-dark-navy text-white mt-auto overflow-hidden">
+    <footer className="relative bg-dark-navy dark:bg-dark-card text-white dark:text-gray-100 mt-auto overflow-hidden transition-colors duration-300">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-t from-purple-accent/10 via-transparent to-transparent"></div>
 

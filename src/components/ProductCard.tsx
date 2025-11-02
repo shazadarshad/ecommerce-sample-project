@@ -50,7 +50,7 @@ export default function ProductCard({
               e.stopPropagation();
               onProductClick(product);
             }}
-            className="px-6 py-2 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+            className="px-6 py-2 bg-primary text-white rounded-full font-semibold shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all duration-300 flex items-center gap-2"
           >
             <ShoppingBag className="w-4 h-4" />
             Quick View

@@ -105,7 +105,7 @@ export default function OffersSection() {
 
                 <Link
                   href="#products"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-full font-semibold hover:shadow-lg transition-all duration-300 group/link"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-semibold hover:shadow-lg hover:bg-primary/90 transition-all duration-300 group/link"
                 >
                   <span>Shop Now</span>
                   <ArrowRight className="w-5 h-5 group-hover/link:translate-x-1 transition-transform" />

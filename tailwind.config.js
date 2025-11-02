@@ -14,9 +14,10 @@ module.exports = {
         accent: '#F97316', // Orange - sale badges, hover states
         // Dark navy (kept for dark mode backgrounds)
         "dark-navy": "#0F172A",
-        // Light blue (kept for gradients)
+        "text-primary": "#111827", // Dark text for readability
+        // Light blue (kept for gradients - used sparingly)
         "light-blue": "#38BDF8",
-        // Purple accent (kept for gradients)
+        // Purple accent (kept for gradients - used sparingly)
         "purple-accent": "#A855F7",
         // Background colors
         "light-bg": "#F9FAFB",

@@ -66,7 +66,7 @@ export default function NewsletterSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="px-8 py-4 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-shadow duration-200"
+                className="px-8 py-4 bg-primary text-white rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:bg-primary/90 transition-all duration-200"
               >
                 {submitted ? (
                   <>
