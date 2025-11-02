@@ -5,6 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -12,12 +13,18 @@ module.exports = {
         "light-blue": "#38BDF8",
         "purple-accent": "#A855F7",
         "light-bg": "#F1F5F9",
+        // Dark mode colors
+        "dark-bg": "#0A0E1A",
+        "dark-card": "#151925",
+        "dark-border": "#1E293B",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+      },
+      transitionProperty: {
+        'colors': 'color, background-color, border-color',
       },
     },
   },
   plugins: [],
 };
-

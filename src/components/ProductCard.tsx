@@ -19,7 +19,7 @@ export default function ProductCard({
     <motion.div
       whileHover={{ scale: 1.05, y: -10 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-200/50 transition-all duration-300 cursor-pointer"
+      className="group relative bg-white dark:bg-dark-card rounded-2xl overflow-hidden shadow-md hover:shadow-2xl border border-gray-200/50 dark:border-dark-border transition-all duration-300 cursor-pointer"
       onClick={() => onProductClick(product)}
     >
       {/* Image Container */}
@@ -35,8 +35,8 @@ export default function ProductCard({
         <div className="absolute inset-0 bg-gradient-to-t from-dark-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         {/* Category Badge */}
-        <div className="absolute top-4 left-4 px-3 py-1 bg-white/95 backdrop-blur-md rounded-full border border-gray-200 shadow-lg">
-          <span className="text-xs font-semibold text-dark-navy">{product.category}</span>
+        <div className="absolute top-4 left-4 px-3 py-1 bg-white/95 dark:bg-dark-card/95 backdrop-blur-md rounded-full border border-gray-200 dark:border-dark-border shadow-lg transition-colors duration-300">
+          <span className="text-xs font-semibold text-dark-navy dark:text-gray-100">{product.category}</span>
         </div>
 
         {/* Quick Add Button (shows on hover) */}
@@ -60,10 +60,10 @@ export default function ProductCard({
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="text-xl font-bold text-dark-navy mb-2 line-clamp-2 group-hover:text-purple-accent transition-colors duration-300">
+        <h3 className="text-xl font-bold text-dark-navy dark:text-gray-100 mb-2 line-clamp-2 group-hover:text-purple-accent dark:group-hover:text-light-blue transition-colors duration-300">
           {product.name}
         </h3>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+        <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">
           {product.shortDescription || product.description}
         </p>
         <div className="flex items-center justify-between">
