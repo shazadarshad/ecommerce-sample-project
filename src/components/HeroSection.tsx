@@ -6,35 +6,44 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-light-blue/20 via-purple-accent/20 to-light-blue/10"></div>
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-dark-navy via-dark-navy to-purple-accent/20">
+      {/* Animated Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
       
-      {/* Animated Circles */}
+      {/* Animated Gradient Orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
+            x: [0, 100, 0],
+            y: [0, 50, 0],
           }}
           transition={{
-            duration: 8,
+            duration: 20,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute top-20 left-20 w-72 h-72 bg-purple-accent/30 rounded-full blur-3xl"
+          className="absolute top-20 left-20 w-96 h-96 bg-light-blue rounded-full blur-3xl"
         />
         <motion.div
           animate={{
             scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.6, 0.4],
+            opacity: [0.3, 0.5, 0.3],
+            x: [0, -80, 0],
+            y: [0, -60, 0],
           }}
           transition={{
-            duration: 10,
+            duration: 15,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute bottom-20 right-20 w-96 h-96 bg-light-blue/30 rounded-full blur-3xl"
+          className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-purple-accent rounded-full blur-3xl"
         />
       </div>
 
@@ -46,31 +55,36 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
           className="text-center max-w-4xl mx-auto"
         >
-          {/* Glassmorphic Card */}
-          <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-white/20">
+          {/* Glassmorphic Card with Better Contrast */}
+          <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-white/50">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: 'spring' }}
               className="inline-block mb-6"
             >
-              <Sparkles className="w-16 h-16 text-purple-accent" />
+              <div className="p-4 bg-gradient-to-br from-light-blue/20 to-purple-accent/20 rounded-2xl inline-block">
+                <Sparkles className="w-12 h-12 md:w-16 md:h-16 text-purple-accent" />
+              </div>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-light-blue to-purple-accent bg-clip-text text-transparent"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
             >
-              Welcome to Zenva Store
+              <span className="block text-dark-navy mb-2">Welcome to</span>
+              <span className="block bg-gradient-to-r from-light-blue via-purple-accent to-light-blue bg-clip-text text-transparent">
+                Zenva Store
+              </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl md:text-2xl text-white/90 mb-8 font-light"
+              className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-8 font-light leading-relaxed"
             >
               Discover Premium Products with Unmatched Quality
             </motion.p>
@@ -85,7 +99,7 @@ export default function HeroSection() {
                 href="#products"
                 className="group relative px-8 py-4 bg-gradient-to-r from-light-blue to-purple-accent text-white rounded-full font-semibold text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105"
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center justify-center gap-2">
                   Shop Now
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
@@ -94,7 +108,7 @@ export default function HeroSection() {
 
               <Link
                 href="#about"
-                className="px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-full font-semibold text-lg border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
+                className="px-8 py-4 bg-white border-2 border-gray-300 text-dark-navy rounded-full font-semibold text-lg hover:border-purple-accent hover:bg-purple-accent/5 transition-all duration-300 hover:shadow-lg"
               >
                 Learn More
               </Link>
@@ -108,12 +122,12 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center"
+          className="w-6 h-10 border-2 border-white/80 rounded-full flex justify-center bg-white/10 backdrop-blur-md"
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}
@@ -125,4 +139,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
